@@ -1,9 +1,12 @@
 ﻿namespace TwitchCheck
 {
-    using Newtonsoft.Json.Linq;
     using System;
     using System.Linq;
     using System.Net;
+
+    using Newtonsoft.Json.Linq;
+
+    using TwitchCheck.Data;
 
     class Program
     {

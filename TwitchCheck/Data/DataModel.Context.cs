@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TwitchCheck
+namespace TwitchCheck.Data
 {
     using System;
     using System.Data.Entity;

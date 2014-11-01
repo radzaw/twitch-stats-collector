@@ -55,23 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel.Context.cs">
+    <Compile Include="Data\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel.cs">
+    <Compile Include="Data\DataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs">
+    <Compile Include="Data\Game.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GameStat.cs">
+    <Compile Include="Data\GameStat.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel.Designer.cs">
+    <Compile Include="Data\DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
@@ -89,11 +89,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
-    <EntityDeploy Include="DataModel.edmx">
+    <EntityDeploy Include="Data\DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataModel.edmx.diagram">
+    <None Include="Data\DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -107,11 +107,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModel.Context.tt">
+    <Content Include="Data\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataModel.tt">
+    <Content Include="Data\DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
