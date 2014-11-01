@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="twitchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GameStat">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="CheckDate" />
+          </Key>
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="CheckDate" Type="datetime" Nullable="false" />
+          <Property Name="Viewers" Type="int" Nullable="false" />
+          <Property Name="Channels" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__GameStat__GameId__2F10007B">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="GameStat" Type="Self.GameStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameStat">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="twitchModelStoreContainer">
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameStat" EntityType="Self.GameStat" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GameStat__GameId__2F10007B" Association="Self.FK__GameStat__GameId__2F10007B">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameStat" EntitySet="GameStat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TwitchStatsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameStat" Relationship="Self.FK__GameStat__GameId__2F10007B" FromRole="Game" ToRole="GameStat" />
+        </EntityType>
+        <EntityType Name="GameStat">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="CheckDate" />
+          </Key>
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="CheckDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Viewers" Type="Int32" Nullable="false" />
+          <Property Name="Channels" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__GameStat__GameId__2F10007B" FromRole="GameStat" ToRole="Game" />
+        </EntityType>
+        <Association Name="FK__GameStat__GameId__2F10007B">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="GameStat" Type="Self.GameStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameStat">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TwitchStatsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Game" EntityType="Self.Game" />
+          <EntitySet Name="GameStat" EntityType="Self.GameStat" />
+          <AssociationSet Name="FK__GameStat__GameId__2F10007B" Association="Self.FK__GameStat__GameId__2F10007B">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameStat" EntitySet="GameStat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="twitchModelStoreContainer" CdmEntityContainer="TwitchStatsEntities">
+          <EntitySetMapping Name="Game">
+            <EntityTypeMapping TypeName="TwitchStatsModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameStat">
+            <EntityTypeMapping TypeName="TwitchStatsModel.GameStat">
+              <MappingFragment StoreEntitySet="GameStat">
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="CheckDate" ColumnName="CheckDate" />
+                <ScalarProperty Name="Viewers" ColumnName="Viewers" />
+                <ScalarProperty Name="Channels" ColumnName="Channels" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

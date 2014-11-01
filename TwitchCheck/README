@@ -1,0 +1,1 @@
+Simple Twitch.tv statistics collector. It's using Twitch API to get basic informations about games and save them in SQL Server. It's intended to run as Azure WebJob with Azure SQL database.
